@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>BiznesGPT</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .rok-input-container {
+            position: absolute;
+            top: 66px;
+            right: 32px;
+            margin-bottom: 0;
+            display: flex;
+            align-items: center;
+            z-index: 1001;
+        }
+        #rok {
+            width: 10ch;
+            font-size: 1em;
+            padding: 2px 8px;
+            border-radius: 5px;
+            border: 1px solid #bababa;
+            background: #f6f6f6;
+            color: #222;
+            text-align: right;
+            margin-left: 0.5em;
+        }
+        #rok:invalid {
+            border: 1.5px solid #a22;
+            background: #fff0f0;
+        }
+        body {
+            position: relative;
+        }
+        .main-content-width {
+            margin-top: 106px;
+        }
+        @media (max-width: 600px) {
+            .rok-input-container {
+                right: 8px;
+                top: 76px;
+            }
+            .main-content-width {
+                margin-top: 126px;
+            }
+        }
+    </style>
+    <script>
+        window.addEventListener('DOMContentLoaded', function() {
+            function updateYearHeaders() {
+                const rokValue = parseInt(document.getElementById('rok').value, 10) || 2025;
+                const headerB = document.querySelectorAll('.dynamic-rok-header-b');
+                const headerC = document.querySelectorAll('.dynamic-rok-header-c');
+                const headerD = document.querySelectorAll('.dynamic-rok-header-d');
+                headerB.forEach(th => th.textContent = rokValue);
+                headerC.forEach(th => th.textContent = rokValue + 1);
+                headerD.forEach(th => th.textContent = (rokValue + 2) + " ->");
+            }
+            document.getElementById('rok').addEventListener('input', updateYearHeaders);
+            updateYearHeaders();
+        });
+    </script>
+</head>
+<body>
+    <div class="top-white-space"></div>
+    <nav class="menu-bar">
+        <div class="menu-bar-left">
+            <label for="filename">Nazwa pliku: </label>
+            <input type="text" id="filename" value="biznesgpt.csv" style="width:140px;">
+        </div>
+        <div class="menu-bar-right">
+            <button class="save-load-btn" onclick="saveToFile()">Zapisz plik</button>
+            <input type="file" id="fileInput" accept=".csv" onchange="loadFromFile(event)">
+            <button class="save-load-btn" onclick="document.getElementById('fileInput').click()">Wczytaj plik</button>
+        </div>
+    </nav>
+
+    <div class="rok-input-container">
+        <label for="rok">Rok startowy:</label>
+        <input
+            type="number"
+            id="rok"
+            name="rok"
+            min="2025"
+            max="2035"
+            step="1"
+            value="2025"
+            oninput="if (this.value.length > 4) this.value = this.value.slice(0,4); if (this.value && (this.value < 2025 || this.value > 2035)) this.value = 2025;"
+            required
+        >
+    </div>
+
+    <div class="menu-bar-spacer"></div>
+    <div class="center-page">
+        <div class="main-content-width">
+            <!-- SEKCJA 1 -->
+            <div class="container">
+                <hr class="table-title-hr">
+                <div class="section-title after-title-space">I. Środki trwałe i WNiP</div>
+                <div class="table-wrapper">
+                <table id="myTable">
+                    <tr>
+                        <th>PRZEDMIOT</th>
+                        <th>Wart. netto</th>
+                        <th>Amort.</th>
+                        <th>Środki własne</th>
+                        <th>Pozostałe środki</th>
+                        <th>Wybór</th>
+                    </tr>
+                    <tr>
+                        <td><input type="text" value="Tekst 1"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                        <td class="percent-cell"><input type="text" data-numeric="true" maxlength="6" value="0,00"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00" readonly></td>
+                        <td class="numeric-cell">
+                            <select style="text-align-last:center;-moz-text-align-last:center;display:inline-block;margin:0 auto;">
+                                <option value="kredyt" selected>kredyt</option>
+                                <option value="leasing">leasing</option>
+                                <option value="">nic</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" value="Tekst 2"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                        <td class="percent-cell"><input type="text" data-numeric="true" maxlength="6" value="0,00"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00" readonly></td>
+                        <td class="numeric-cell">
+                            <select style="text-align-last:center;-moz-text-align-last:center;display:inline-block;margin:0 auto;">
+                                <option value="kredyt" selected>kredyt</option>
+                                <option value="leasing">leasing</option>
+                                <option value="">nic</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" value="Tekst 3"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                        <td class="percent-cell"><input type="text" data-numeric="true" maxlength="6" value="0,00"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00" readonly></td>
+                        <td class="numeric-cell">
+                            <select style="text-align-last:center;-moz-text-align-last:center;display:inline-block;margin:0 auto;">
+                                <option value="kredyt" selected>kredyt</option>
+                                <option value="leasing">leasing</option>
+                                <option value="">nic</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr id="summaryRow">
+                        <td><input type="text" class="no-border" value="Suma" tabindex="-1" readonly></td>
+                        <td class="numeric-cell"><input type="text" id="summary1" class="no-border" readonly data-numeric="true"></td>
+                        <td class="percent-cell"><input type="text" id="summary2" class="no-border" readonly data-numeric="true"></td>
+                        <td class="numeric-cell"><input type="text" id="summary4" class="no-border" readonly data-numeric="true"></td>
+                        <td class="numeric-cell"><input type="text" id="summary5" class="no-border" readonly data-numeric="true"></td>
+                        <td class="numeric-cell"></td>
+                    </tr>
+                </table>
+                </div>
+                <div class="table-note">
+                    <b>Uwaga, w przypadku leasigu przyjęto wpłatę początkową w wysokości 20% warości środka trwałego</b>
+                </div>
+                <div class="table-buttons">
+                    <button onclick="addRow('myTable', 'summaryRow', 6)">Dodaj pozycję</button>
+                    <button onclick="removeRow('myTable', 'summaryRow', 3)">Usuń pozycję</button>
+                </div>
+            </div>
+            <!-- SEKCJA 2 -->
+            <div class="fin-container block-gap">
+                <hr class="table-title-hr">
+                <div class="fin-section-title after-title-space">II. Źródła finansowania</div>
+                <div class="table-wrapper">
+                  <table class="fin-table">
+                    <tr>
+                      <th>Źródło fin.</th>
+                      <th>Wartość</th>
+                      <th>Okres/lata</th>
+                    </tr>
+                    <tr>
+                      <td class="no-border-text">kredyt inwestycyjny</td>
+                      <td><input type="text" id="kredytInwestycyjny2" value=""></td>
+                      <td><input type="text" value=""></td>
+                    </tr>
+                    <tr>
+                      <td class="no-border-text">leasing oper. wkład własny</td>
+                      <td><input type="text" id="leasingOperacyjny2" value=""></td>
+                      <td><input type="text" value=""></td>
+                    </tr>
+                  </table>
+                </div>
+                <div class="fin-section-title after-title-space"></div>
+                <div class="table-wrapper">
+                  <table class="fin-table">
+                    <tr>
+                      <th>Źródło fin.</th>
+                      <th>Wartość</th>
+                      <th>Okres/lata</th>
+                    </tr>
+                    <tr>
+                      <td class="no-border-text">kredyt obrotowy</td>
+                      <td><input type="text" id="kredytObrotowy2" value=""></td>
+                      <td><input type="text" value=""></td>
+                    </tr>
+                    <tr>
+                      <td class="no-border-text">Środki własne obrotowe</td>
+                      <td><input type="text" id="srodkiWlasneObrotowe2" value=""></td>
+                      <td><input type="text" value=""></td>
+                    </tr>
+                  </table>
+                </div>
+                <div class="fin-section-title after-title-space"></div>
+                <div class="table-wrapper">
+                  <table class="fin-table">
+                    <tr>
+                      <th>Źródło fin.</th>
+                      <th>Wartość</th>
+                      <th>Okres/lata</th>
+                    </tr>
+                    <tr>
+                      <td class="no-border-text">Nakłady finansowe razem</td>
+                      <td><input type="text" id="nakladyRazem2" value=""></td>
+                      <td><input type="text" value=""></td>
+                    </tr>
+                    <tr>
+                      <td class="no-border-text">Kapiat zakładowy</td>
+                      <td><input type="text" id="kapitalZakladowy2" value=""></td>
+                      <td><input type="text" value=""></td>
+                    </tr>
+                  </table>
+                </div>
+            </div>
+            <!-- SEKCJA 3 -->
+            <div class="container block-gap">
+                <hr class="table-title-hr">
+                <div class="section-title after-title-space">III. ROCZNY PLAN SPRZEDAŻY - STRUKTURA</div>
+                <div class="table-wrapper">
+                <table id="myTable2">
+                    <tr>
+                        <th>Przedmiot</th>
+                        <th class="dynamic-rok-header-b">2025</th>
+                        <th class="dynamic-rok-header-c">2026</th>
+                        <th class="dynamic-rok-header-d">2027 -></th>
+                        <th>Struktura</th>
+                        <th>Marża</th>
+                    </tr>
+                    <tr>
+                        <td><input type="text" value="Produkty" style="font-family: Arial, sans-serif;"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                        <td><input type="text" maxlength="8" class="marza-cell"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" value="Materiały" style="font-family: Arial, sans-serif;"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                        <td><input type="text" maxlength="8" class="marza-cell"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" value="Usługi" style="font-family: Arial, sans-serif;"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                        <td><input type="text" maxlength="8" class="marza-cell"></td>
+                    </tr>
+                    <tr class="summary-row2" id="summaryRow2">
+                        <td class="summary-label"><input type="text" class="no-border" value="Suma" tabindex="-1" readonly></td>
+                        <td class="numeric-cell"><input type="text" id="summary1_2" class="no-border" readonly data-numeric="true"></td>
+                        <td class="numeric-cell"><input type="text" id="summary2_2" class="no-border" readonly data-numeric="true"></td>
+                        <td class="numeric-cell"><input type="text" id="summary3_2" class="no-border" readonly data-numeric="true"></td>
+                        <td class="numeric-cell"><input type="text" id="summary4_2" class="no-border" readonly data-numeric="true"></td>
+                        <td></td>
+                    </tr>
+                </table>
+                </div>
+                <!-- Zmienne m_1, m_2, m_3 są tylko w JS, nie w HTML -->
+            </div>
+            <!-- SEKCJA 4 -->
+            <div class="container block-gap">
+                <hr class="table-title-hr">
+                <div class="section-title after-title-space">IV. KOSZTY BEZPOŚREDNIE PRODUKTÓW I MATERIAŁÓW</div>
+                <div class="table-wrapper">
+                <table id="myTable3">
+                    <tr>
+                        <th>Przedmiot</th>
+                        <th class="dynamic-rok-header-b">2025</th>
+                        <th class="dynamic-rok-header-c">2026</th>
+                        <th>Kolumna D</th>
+                        <th>Kolumna E</th>
+                    </tr>
+                    <tr>
+                        <td><input type="text" value="Produkty" style="font-family: Arial, sans-serif;"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" value="Materiały" style="font-family: Arial, sans-serif;"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" value="Usługi" style="font-family: Arial, sans-serif;"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                    </tr>
+                    <tr class="summary-row2" id="summaryRow3">
+                        <td class="summary-label"><input type="text" class="no-border" value="Suma" tabindex="-1" readonly></td>
+                        <td class="numeric-cell"><input type="text" id="summary1_3" class="no-border" readonly data-numeric="true"></td>
+                        <td class="numeric-cell"><input type="text" id="summary2_3" class="no-border" readonly data-numeric="true"></td>
+                        <td class="numeric-cell"><input type="text" id="summary3_3" class="no-border" readonly data-numeric="true"></td>
+                        <td class="numeric-cell"><input type="text" id="summary4_3" class="no-border" readonly data-numeric="true"></td>
+                    </tr>
+                </table>
+                </div>
+            </div>
+            <!-- SEKCJA 5 -->
+            <div class="container block-gap">
+                <hr class="table-title-hr">
+                <div class="section-title after-title-space">V. PLAN ZATRUDNIENIA I KOSZTY PŁAC</div>
+                <div class="table-wrapper">
+                <table id="myTable4">
+                    <tr>
+                        <th>Przedmiot</th>
+                        <th class="dynamic-rok-header-b">2025</th>
+                        <th class="dynamic-rok-header-c">2026</th>
+                        <th>Kolumna D</th>
+                        <th>Kolumna E</th>
+                    </tr>
+                    <tr>
+                        <td><input type="text" value="" style="font-family: Arial, sans-serif;"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" value="Produkty" style="font-family: Arial, sans-serif;"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" value="Materiały" style="font-family: Arial, sans-serif;"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" value="Usługi" style="font-family: Arial, sans-serif;"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                    </tr>
+                    <tr class="summary-row2" id="summaryRow4">
+                        <td class="summary-label"><input type="text" class="no-border" value="Suma" tabindex="-1" readonly></td>
+                        <td class="numeric-cell"><input type="text" id="summary1_4" class="no-border" readonly data-numeric="true"></td>
+                        <td class="numeric-cell"><input type="text" id="summary2_4" class="no-border" readonly data-numeric="true"></td>
+                        <td class="numeric-cell"><input type="text" id="summary3_4" class="no-border" readonly data-numeric="true"></td>
+                        <td class="numeric-cell"><input type="text" id="summary4_4" class="no-border" readonly data-numeric="true"></td>
+                    </tr>
+                </table>
+                </div>
+            </div>
+            <!-- SEKCJA 6 -->
+            <div class="container block-gap">
+                <hr class="table-title-hr">
+                <div class="section-title after-title-space">VI. ROCZNY PLAN KOSZTÓW (bez amortyzacji i kosztów finansowych)</div>
+                <div class="table-wrapper">
+                <table id="myTable5">
+                    <tr>
+                        <th>Przedmiot</th>
+                        <th>Kolumna B</th>
+                        <th>Kolumna C</th>
+                        <th>Kolumna D</th>
+                        <th>Kolumna E</th>
+                    </tr>
+                    <tr>
+                        <td><input type="text" value="" style="font-family: Arial, sans-serif;"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" value="Produkty" style="font-family: Arial, sans-serif;"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" value="Materiały" style="font-family: Arial, sans-serif;"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" value="Usługi" style="font-family: Arial, sans-serif;"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                        <td class="numeric-cell"><input type="text" data-numeric="true" maxlength="12" value="0,00"></td>
+                    </tr>
+                    <tr class="summary-row2" id="summaryRow5">
+                        <td class="summary-label"><input type="text" class="no-border" value="Suma" tabindex="-1" readonly></td>
+                        <td class="numeric-cell"><input type="text" id="summary1_5" class="no-border" readonly data-numeric="true"></td>
+                        <td class="numeric-cell"><input type="text" id="summary2_5" class="no-border" readonly data-numeric="true"></td>
+                        <td class="numeric-cell"><input type="text" id="summary3_5" class="no-border" readonly data-numeric="true"></td>
+                        <td class="numeric-cell"><input type="text" id="summary4_5" class="no-border" readonly data-numeric="true"></td>
+                    </tr>
+                </table>
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>

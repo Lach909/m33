@@ -1,0 +1,318 @@
+#myTable2 th:last-child,
+#myTable2 td:last-child {
+    width: 8ch;
+    min-width: 8ch;
+    max-width: 8ch;
+}
+#myTable2 td:last-child input.marza-cell {
+    width: 7ch !important;
+    min-width: 7ch;
+    max-width: 8ch;
+    box-sizing: border-box;
+    padding-left: 0.2em;
+    padding-right: 0.2em;
+    text-align: right; /* Dodane: wyrównanie procentów do prawej */
+}
+
+/* --- poniżej reszta Twojego stylu --- */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+table, th, td, input, select {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+}
+.top-white-space {
+    width: 100vw;
+    height: 10px;
+    background: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+}
+.center-page {
+    min-height: 100vh;
+    min-width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.main-content-width {
+    max-width: 800px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.container, .fin-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.section-title, .fin-section-title {
+    font-size: 1.15em;
+    font-weight: bold;
+    letter-spacing: 1px;
+    padding-top: 8px;
+    text-align: left;
+    width: 100%;
+}
+.after-title-space { margin-bottom: 1.2em; }
+.table-title-hr { border: none; border-top: 2.56px solid #333; margin-top: 1.3em; margin-bottom: 0.7em; width: 100%; }
+.table-wrapper {
+    max-width: 800px;
+    width: 100%;
+    overflow-x: auto;
+}
+table {
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    overflow: hidden;
+    min-width: 600px;
+    max-width: 800px;
+    width: 100%;
+    background: #fff;
+}
+th, td { border: 1px solid #ccc; padding: 4px; white-space: nowrap; background: #fff; }
+th:first-child { border-top-left-radius: 6px; }
+th:last-child  { border-top-right-radius: 6px; }
+tr.summary-row td:first-child, tr.summary-row2 td:first-child { border-bottom-left-radius: 6px; }
+tr.summary-row td:last-child, tr.summary-row2 td:last-child  { border-bottom-right-radius: 6px; }
+#myTable th, #myTable td { width: 130px; }
+#myTable th:nth-child(1), #myTable td:nth-child(1) { width: 156px; }
+#myTable th:nth-child(5), #myTable td:nth-child(5),
+#myTable th:nth-child(6), #myTable td:nth-child(6) { width: 130px; }
+#myTable2 th, #myTable2 td, #myTable3 th, #myTable3 td,
+#myTable4 th, #myTable4 td, #myTable5 th, #myTable5 td, #myTable6 th, #myTable6 td { width: 130px; }
+#myTable2 th:nth-child(1), #myTable2 td:nth-child(1),
+#myTable3 th:nth-child(1), #myTable3 td:nth-child(1),
+#myTable4 th:nth-child(1), #myTable4 td:nth-child(1),
+#myTable5 th:nth-child(1), #myTable5 td:nth-child(1),
+#myTable6 th:nth-child(1), #myTable6 td:nth-child(1) { width: 156px; }
+#myTable td input[type="text"]:not([data-numeric="true"]),
+#myTable2 td input[type="text"]:not([data-numeric="true"]),
+#myTable3 td input[type="text"]:not([data-numeric="true"]),
+#myTable4 td input[type="text"]:not([data-numeric="true"]),
+#myTable5 td input[type="text"]:not([data-numeric="true"]),
+#myTable6 td input[type="text"]:not([data-numeric="true"]) { width: 140px; }
+#myTable td.numeric-cell input,
+#myTable td.percent-cell input,
+#myTable td input[type="text"][data-numeric="true"],
+#myTable2 td.numeric-cell input,
+#myTable2 td.percent-cell input,
+#myTable2 td input[type="text"][data-numeric="true"],
+#myTable3 td.numeric-cell input,
+#myTable3 td.percent-cell input,
+#myTable3 td input[type="text"][data-numeric="true"],
+#myTable4 td.numeric-cell input,
+#myTable4 td.percent-cell input,
+#myTable4 td input[type="text"][data-numeric="true"],
+#myTable5 td.numeric-cell input,
+#myTable5 td.percent-cell input,
+#myTable5 td input[type="text"][data-numeric="true"],
+#myTable6 td.numeric-cell input,
+#myTable6 td.percent-cell input,
+#myTable6 td input[type="text"][data-numeric="true"] {
+    width: 110px;
+}
+#myTable td select {
+    width: 120px;
+    text-align: right;
+    font-size: 12px;
+}
+#myTable td:nth-child(6), #myTable th:nth-child(6) {
+    text-align: center;
+}
+#myTable td:nth-child(6) select {
+    text-align-last: center;
+    -moz-text-align-last: center;
+    display: inline-block;
+    margin: 0 auto;
+}
+input[type="text"][data-numeric="true"],
+.numeric-cell input,
+.percent-cell input,
+#myTable td:not(:first-child) input,
+#myTable2 td:not(:first-child) input,
+#myTable3 td:not(:first-child) input,
+#myTable4 td:not(:first-child) input,
+#myTable5 td:not(:first-child) input,
+#myTable6 td:not(:first-child) input {
+    text-align: right;
+}
+#myTable td.percent-cell input,
+#myTable th.percent-cell,
+#myTable td.percent-cell,
+#myTable2 td.percent-cell input,
+#myTable2 th.percent-cell,
+#myTable2 td.percent-cell,
+#myTable3 td.percent-cell input,
+#myTable3 th.percent-cell,
+#myTable3 td.percent-cell,
+#myTable4 td.percent-cell input,
+#myTable4 th.percent-cell,
+#myTable4 td.percent-cell,
+#myTable5 td.percent-cell input,
+#myTable5 th.percent-cell,
+#myTable5 td.percent-cell,
+#myTable6 td.percent-cell input,
+#myTable6 th.percent-cell,
+#myTable6 td.percent-cell {
+    text-align: right;
+}
+.summary-label {
+    font-weight: bold;
+    text-align: left;
+    border: none;
+    width: 156px;
+}
+.no-border {
+    border: none !important;
+    background: transparent !important;
+    font-weight: bold;
+    width: 140px;
+    pointer-events: none;
+}
+.readonly-output {
+    background: #eee !important;
+    pointer-events: none;
+    color: #888;
+}
+.table-buttons {
+    margin: 7px 0 18px 0;
+}
+.table-buttons button {
+    font-size: 12px;
+    padding: 2px 18px;
+    margin-right: 8px;
+    border-radius: 5px;
+    border: 1px solid #bababa;
+    background: linear-gradient(90deg, #f2f2f2 0%, #d0d0d0 60%, #e5e5e5 100%);
+    color: #222;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+}
+.table-buttons button:last-child {
+    margin-right: 0;
+}
+.table-buttons button:hover {
+    color: #0074d9;
+    background: linear-gradient(90deg, #f2f2f2 0%, #d0d0d0 60%, #e5e5e5 100%);
+}
+.menu-bar {
+    background: linear-gradient(90deg, #f2f2f2 0%, #d0d0d0 60%, #e5e5e5 100%);
+    box-shadow: 0 2px 8px rgba(80,80,80,0.08), 0 1px 0 #c5c5c5;
+    display: flex;
+    align-items: center;
+    padding: 0.18em 0.7em;
+    gap: 0.7em;
+    font-size: 0.97em;
+    margin-bottom: 1.2em;
+    border: 1px solid #bcbcbc;
+    min-height: 0;
+    position: fixed;
+    top: 10px;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    z-index: 1000;
+    justify-content: space-between;
+}
+.menu-bar-left, .menu-bar-right {
+    display: flex;
+    align-items: center;
+    gap: 0.7em;
+}
+.menu-bar-spacer { height: 56px; }
+.menu-bar label {
+    color: #1b1b1b;
+    letter-spacing: 0.04em;
+    margin-right: 0.4em;
+    font-size: 1em;
+    line-height: 1.2;
+}
+.menu-bar input[type="text"] {
+    height: 1.2em;
+    border-radius: 5px;
+    border: 1px solid #bababa;
+    padding: 1px 8px;
+    font-size: 0.97em;
+    background: #f6f6f6;
+    color: #222;
+    margin-right: 0.2em;
+    transition: border .16s, background .16s;
+}
+.menu-bar input[type="text"]:focus {
+    border: 1.3px solid #6a6a6a;
+    outline: none;
+    background: #fff;
+}
+.menu-bar button {
+    border-radius: 5px;
+    border: none;
+    background: transparent;
+    color: #222;
+    cursor: pointer;
+    padding: 0.12em 0.65em;
+    font-size: 0.97em;
+    margin-right: 0.2em;
+    min-height: 0;
+    transition: color 0.15s, background 0.15s;
+}
+.menu-bar button:last-child { margin-right: 0; }
+.menu-bar button.save-load-btn:hover {
+    color: #0074d9;
+    background: linear-gradient(90deg, #f2f2f2 0%, #d0d0d0 60%, #e5e5e5 100%);
+}
+.menu-bar button:hover:not(.save-load-btn) {
+    background: rgba(0,0,0,0.07);
+    color: #111;
+}
+.menu-bar input[type="file"] { display: none; }
+.fin-container { margin-bottom: 1.2em; }
+.fin-table {
+    min-width: 380px;
+    margin-bottom: 1.1em;
+    max-width: 800px;
+    width: 100%;
+}
+.fin-table th, .fin-table td { width: 115px; text-align: left; }
+.fin-table th { background: #f9f9f9; }
+.no-border-text {
+    border: none !important;
+    background: transparent !important;
+    font-weight: normal;
+    padding-left: 4px;
+}
+.table-note {
+    margin: 8px 0 22px 0;
+    font-size: 13px;
+    color: #a22;
+    font-style: italic;
+    line-height: 1.4;
+    max-width: 750px;
+}
+.block-gap {
+    margin-top: 46px;
+}
+.fin-table th:nth-child(1),
+.fin-table td:nth-child(1) { width: 180px; }
+.fin-table th:nth-child(2),
+.fin-table td:nth-child(2) { width: 120px; }
+.fin-table th:nth-child(3),
+.fin-table td:nth-child(3) { width: 120px; }
+/* Wyrównanie do prawej dla kolumny 'Wartość' w sekcji 2 */
+.fin-table td:nth-child(2) input {
+    text-align: right;
+}
